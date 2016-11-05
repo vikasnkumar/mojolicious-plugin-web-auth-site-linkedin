@@ -10,6 +10,7 @@ has authorize_url    => 'https://www.linkedin.com/oauth/v2/authorization';
 has response_type    => 'code';
 has user_info        => 1;
 has user_info_url    => 'https://api.linkedin.com/v1/people/~:(id,email-address,first-name,last-name,formatted-name,headline,summary,positions,picture-url,specialties,num-connections,api-standard-profile-request)?format=json';
+has authorize_header => 'Bearer';
 
 sub moniker {'linkedin'}
 
