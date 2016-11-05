@@ -1,6 +1,6 @@
 NAME
-    Mojolicious::Plugin::Web::Auth::Site::LinkedIn - LinkedIn OAuth Plugin for
-    Mojolicious::Plugin::Web::Auth
+    Mojolicious::Plugin::Web::Auth::Site::LinkedIn - LinkedIn OAuth Plugin
+    for Mojolicious::Plugin::Web::Auth
 
 VERSION
     version 0.01
@@ -13,6 +13,10 @@ SYNOPSIS
             secret      => 'LinkedIn consumer secret',
             on_finished => sub {
                 my ( $c, $access_token, $user_info ) = @_;
+                ...
+            },
+            on_error => sub {
+                my ( $c, $error ) = @_;
                 ...
             },
         );
@@ -32,8 +36,9 @@ SYNOPSIS
         # default callback endpoint: /auth/linkedin/callback
 
 DESCRIPTION
-    This module adds LinkedIn <https://developer.linkedin.com/docs/rest-api/>
-    support to Mojolicious::Plugin::Web::Auth.
+    This module adds LinkedIn
+    <https://developer.linkedin.com/docs/rest-api/> support to
+    Mojolicious::Plugin::Web::Auth.
 
 AUTHOR
     Vikas N Kumar <vikas@cpan.org>
