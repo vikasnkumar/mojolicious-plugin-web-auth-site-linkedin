@@ -8,8 +8,9 @@ use Mojo::Base qw/Mojolicious::Plugin::Web::Auth::OAuth2/;
 has access_token_url => 'https://www.linkedin.com/oauth/v2/accessToken';
 has authorize_url    => 'https://www.linkedin.com/oauth/v2/authorization';
 has response_type    => 'code';
+has scope            => 'r_liteprofile r_emailaddress';
 has user_info        => 1;
-has user_info_url    => 'https://api.linkedin.com/v1/people/~:(id,email-address,first-name,last-name,formatted-name,headline,summary,positions,picture-url,specialties,num-connections,api-standard-profile-request)?format=json';
+has user_info_url    => 'https://api.linkedin.com/v2/emailAddress?q=members&projection=(elements*(handle~))';
 has authorize_header => 'Bearer';
 
 sub moniker {'linkedin'}
@@ -29,7 +30,7 @@ __END__
         key         => 'LinkedIn consumer key',
         secret      => 'LinkedIn consumer secret',
         on_finished => sub {
-            my ( $c, $access_token, $user_info ) = @_;
+            my ( $c, $access_token, $email_info ) = @_;
             ...
         },
         on_error => sub {
@@ -44,7 +45,7 @@ __END__
         key         => 'LinkedIn consumer key',
         secret      => 'LinkedIn consumer secret',
         on_finished => sub {
-            my ( $c, $access_token, $user_info ) = @_;
+            my ( $c, $access_token, $email_info ) = @_;
             ...
         };
 
