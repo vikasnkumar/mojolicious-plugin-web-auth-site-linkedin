@@ -11,6 +11,7 @@ has response_type    => 'code';
 has scope            => 'r_liteprofile r_emailaddress';
 has user_info        => 1;
 has user_info_url    => 'https://api.linkedin.com/v2/emailAddress?q=members&projection=(elements*(handle~))';
+has user_more_info_url => 'https://api.linkedin.com/v2/me?projection=(id,firstName,lastName,profilePicture(displayImage~:playableStreams))';
 has authorize_header => 'Bearer';
 
 sub moniker {'linkedin'}
@@ -57,5 +58,7 @@ __END__
 
 This module adds L<LinkedIn|https://developer.linkedin.com/docs/rest-api/> support to
 L<Mojolicious::Plugin::Web::Auth>.
+
+The only extra URL option is the C<user_more_info_url> which the user can use to do a L<Mojo::UserAgent> call to with the access token as a parameter, to get the other info such as profile image and first or last name. This URL can also be modified by the user to retrieve extra fields. For more details refer to the L<LinkedIn API|https://developer.linkedin.com/docs/rest-api/>.
 
 =cut
